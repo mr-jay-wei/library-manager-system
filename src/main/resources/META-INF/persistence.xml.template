@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <!-- 定义一个持久化单元 (Persistence Unit) -->
+    <!-- 一个 PU 包含了一套完整的数据库连接和实体类信息 -->
+    <persistence-unit name="mysql-persistence-unit" transaction-type="RESOURCE_LOCAL">
+
+        <!-- 明确指定JPA的实现提供商为Hibernate -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- 声明此持久化单元管理的实体类 -->
+        <!-- JPA/Hibernate会自动扫描并管理这个类 -->
+        <class>com.nantan.app.Book</class>
+
+        <properties>
+            <!-- 1. JDBC 连接配置 -->
+            <!-- JDBC URL: 请注意 &amp; 是 & 符号的XML转义 -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://mysql2.sqlpub.com:3307/mysql_library_demo?useSSL=false&amp;serverTimezone=UTC"/>
+            <!-- 数据库驱动类 -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <!-- 数据库用户名 -->
+            <property name="jakarta.persistence.jdbc.user" value="user_library"/>
+            <!-- 数据库密码: 请将下面的 <your_password> 替换为你的真实密码，并将此文件重命名为 persistence.xml -->
+            <property name="jakarta.persistence.jdbc.password" value="your_password"/>
+
+            <!-- 2. Hibernate 特定配置 -->
+            <!-- 在控制台打印Hibernate生成的SQL语句，便于调试 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- 格式化打印出来的SQL语句 -->
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!--
+              数据库方言 (Dialect): 告诉Hibernate我们使用的是MySQL 8+版本。
+              这很重要，因为不同数据库的SQL语法有细微差别，Hibernate需要据此生成正确的SQL。
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+
+            <!--
+              数据库表结构生成策略 (可选, 但对开发很重要):
+              - none: (默认, 最安全) 不做任何操作.
+              - validate: 验证实体类和数据库表的映射是否一致, 不一致则报错.
+              - update: 检查实体类, 如果数据库中表不存在或字段缺失, 会自动添加. (开发常用)
+              - create: 每次启动都删除旧表, 创建新表. (测试常用)
+              - create-drop: 启动时创建, 关闭时删除. (测试常用)
+              我们暂时设置为 validate，要求你手动建表。
+            -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>

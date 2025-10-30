@@ -1,0 +1,3 @@
+# MongoDB Atlas Connection String
+# 请将下面的 <password> 替换为你的真实密码，并将此文件重命名为 application.properties
+mongodb.uri=mongodb+srv://wandercat:<password>@cluster0.k2i7wxu.mongodb.net/?appName=Cluster0
