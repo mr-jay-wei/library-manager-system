@@ -45,3 +45,4 @@ build/
 # 忽略所有 IDEA 的本地工作区文件 (更全面的规则)
 .idea/workspace.xml
 .idea/shelf/
+/.idea/

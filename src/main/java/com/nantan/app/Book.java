@@ -1,45 +1,48 @@
 package com.nantan.app;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * Represents a book in the library.
- * This class is now a JPA Entity, meaning it can be directly mapped to a database table.
- * 这个类现在是一个 JPA 实体，可以被直接映射到数据库表。
+ * This class is now annotated for both JPA (MySQL) and Spring Data MongoDB.
  */
-@Entity // 1. 声明这是一个JPA实体类
-@Table(name = "books") // 2. 明确指定它映射到数据库中的 'books' 表
+@Entity // For JPA
+@Table(name = "books") // For JPA
+@Document(collection = "books") // For MongoDB
 public class Book {
 
-    @Id // 3. 声明这个属性是主键 (Primary Key)
-    @Column(name = "id") // 4. 映射到表中的 'id' 列
-    private int id;
+    @Id // Common @Id for both JPA and MongoDB
+    @Column(name = "id") // For JPA
+    @Field("id") // For MongoDB, explicitly map to the 'id' field in the document
+    private Integer id;
 
-    @Column(name = "title", nullable = false) // 5. 映射到 'title' 列，并指定该列不应为空
+    @Column(name = "title", nullable = false)
+    @Field("title")
     private String title;
 
-    @Column(name = "author") // 6. 映射到 'author' 列
+    @Column(name = "author")
+    @Field("author")
     private String author;
 
-    // JPA 规范要求实体类必须有一个公共的或受保护的无参构造函数
+    // A no-arg constructor is required by both JPA and Spring Data
     public Book() {
     }
 
-    public Book(String title, String author, int id) {
+    // Constructor for creating new books, now requires an ID again
+    public Book(Integer id, String title, String author) {
+        this.id = id;
         this.title = title;
         this.author = author;
-        this.id = id;
     }
 
-    // --- Getters and Setters remain unchanged ---
-    public int getId() {
+    // --- Getters and Setters ---
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,6 +64,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "书籍编号: " + id + ", 书名: " + title + ", 作者: " + author;
+        return "书籍编号: " + id + ", 书名: '" + title + "', 作者: '" + author + "'";
     }
 }
