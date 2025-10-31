@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Include Spring Boot's base logging configuration -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- Define a custom console appender pattern -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--
+                Pattern format:
+                %d{yyyy-MM-dd HH:mm:ss.SSS} - Date
+                %thread - Thread name
+                %-5level - Log level (padded to 5 chars)
+                %logger{36} - Logger name (shortened to 36 chars)
+                %msg - The log message
+                %n - New line
+            -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        Spring Profile specific configurations.
+        The content inside <springProfile> will only be active when that profile is active.
+    -->
+
+    <!-- Configuration for 'dev' profile -->
+    <springProfile name="dev">
+        <!-- For our application code, log at DEBUG level in development -->
+        <logger name="com.nantan.app" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+        <!-- For Spring framework code, keep it at INFO level to reduce noise -->
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.hibernate" level="INFO"/>
+    </springProfile>
+
+    <!-- Configuration for 'prod' profile -->
+    <springProfile name="prod">
+        <!-- In production, only log INFO and higher for our application code -->
+        <logger name="com.nantan.app" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <!-- In a real prod setup, you would add a FileAppender here -->
+            <!-- <appender-ref ref="FILE"/> -->
+        </logger>
+        <!-- Keep framework logs quieter in production -->
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.hibernate" level="WARN"/>
+    </springProfile>
+
+    <!-- Root logger configuration -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Example of a File Appender (uncomment for production) -->
+    <!--
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/library-system.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/library-system.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    -->
+
+</configuration>

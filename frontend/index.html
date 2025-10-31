@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        form { margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        input, select, button { padding: 8px; margin-right: 10px; border-radius: 3px; border: 1px solid #ccc; }
+        button { cursor: pointer; background-color: #4CAF50; color: white; border-color: #4CAF50; }
+        .delete-btn { background-color: #f44336; border-color: #f44336; }
+        .controls { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>Library Management System</h1>
+
+<div class="controls">
+    <label for="dataSourceSelect">Data Source:</label>
+    <select id="dataSourceSelect">
+        <option value="mysql">MySQL (JPA)</option>
+        <option value="mongo">MongoDB</option>
+    </select>
+</div>
+
+<h2>Book List</h2>
+<table id="bookTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="bookList">
+    <!-- Book rows will be inserted here by JavaScript -->
+    </tbody>
+</table>
+
+<h2>Add a New Book</h2>
+<form id="addBookForm">
+    <input type="number" id="bookId" placeholder="Book ID" required>
+    <input type="text" id="bookTitle" placeholder="Book Title" required>
+    <input type="text" id="bookAuthor" placeholder="Book Author" required>
+    <button type="submit">Add Book</button>
+</form>
+
+<script>
+    const API_BASE_URL = 'http://localhost:8080/api/books';
+    const bookList = document.getElementById('bookList');
+    const addBookForm = document.getElementById('addBookForm');
+    const dataSourceSelect = document.getElementById('dataSourceSelect');
+
+    // --- Function to fetch and display books ---
+    async function fetchBooks() {
+        const dataSource = dataSourceSelect.value;
+        try {
+            const response = await fetch(`${API_BASE_URL}?dataSource=${dataSource}`);
+            const apiResponse = await response.json(); // Get the wrapped response
+
+            // *** KEY CHANGE 1: Check for business success code ***
+            if (apiResponse.code !== 200) {
+                throw new Error(`API error! code: ${apiResponse.code}, message: ${apiResponse.message}`);
+            }
+
+            // *** KEY CHANGE 2: Access the 'data' property ***
+            const books = apiResponse.data;
+
+            bookList.innerHTML = '';
+
+            books.forEach(book => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                        <td>${book.id}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td><button class="delete-btn" onclick="deleteBook(${book.id})">Delete</button></td>
+                    `;
+                bookList.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error fetching books:', error);
+            alert('Failed to fetch books. Check the console for details.');
+        }
+    }
+
+    // --- Function to add a new book ---
+    async function addBook(event) {
+        event.preventDefault();
+
+        const dataSource = dataSourceSelect.value;
+        const book = {
+            id: parseInt(document.getElementById('bookId').value),
+            title: document.getElementById('bookTitle').value,
+            author: document.getElementById('bookAuthor').value
+        };
+
+        try {
+            const response = await fetch(`${API_BASE_URL}?dataSource=${dataSource}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(book)
+            });
+
+            const apiResponse = await response.json();
+
+            // *** KEY CHANGE 3: Check both HTTP status and business code ***
+            if (!response.ok || apiResponse.code !== 200) {
+                throw new Error(`API error! status: ${response.status}, message: ${apiResponse.message}`);
+            }
+
+            addBookForm.reset();
+            await fetchBooks();
+
+        } catch (error) {
+            console.error('Error adding book:', error);
+            alert('Failed to add book. Check the console for details.');
+        }
+    }
+
+    // --- Function to delete a book ---
+    async function deleteBook(bookId) {
+        if (!confirm(`Are you sure you want to delete book with ID ${bookId}?`)) {
+            return;
+        }
+
+        const dataSource = dataSourceSelect.value;
+        try {
+            const response = await fetch(`${API_BASE_URL}/${bookId}?dataSource=${dataSource}`, {
+                method: 'DELETE'
+            });
+
+            // For DELETE, we might get 200 OK with a body, or 404 Not Found with a body.
+            const apiResponse = await response.json();
+
+            // *** KEY CHANGE 4: Check response status and business code ***
+            if (!response.ok || apiResponse.code !== 200) {
+                throw new Error(`API error! status: ${response.status}, message: ${apiResponse.message}`);
+            }
+
+            await fetchBooks();
+
+        } catch (error) {
+            console.error(`Error deleting book ${bookId}:`, error);
+            // Now we can show a more specific error from the API response
+            alert(`Failed to delete book ${bookId}. Reason: ${error.message}`);
+        }
+    }
+
+    // --- Event Listeners ---
+    dataSourceSelect.addEventListener('change', fetchBooks);
+    addBookForm.addEventListener('submit', addBook);
+
+    // --- Initial Load ---
+    fetchBooks();
+</script>
+
+</body>
+</html>
