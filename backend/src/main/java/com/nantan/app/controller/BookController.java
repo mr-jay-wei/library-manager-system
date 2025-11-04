@@ -6,19 +6,23 @@ import com.nantan.app.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-@Tag(name = "Book Management", description = "APIs for managing books in the library") // 1. Add a tag for grouping APIs
+@Tag(name = "Book Management", description = "APIs for managing books in the library")
 @CrossOrigin
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
 
+    private static final Logger logger = LoggerFactory.getLogger(BookController.class);
     private final BookService bookService;
 
     @Autowired
@@ -26,39 +30,57 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @Operation(summary = "Get all books", description = "Retrieves a list of all books from the specified data source.") // 2. Describe the operation
+    @Operation(summary = "Get all books asynchronously", description = "Asynchronously retrieves a list of all books.")
     @GetMapping
-    public ApiResponse<List<Book>> getAllBooks(
-            @Parameter(description = "The data source to use ('mysql' or 'mongo')", example = "mysql") // 3. Describe the parameter
+    public CompletableFuture<ApiResponse<List<Book>>> getAllBooks(
+            @Parameter(description = "The data source to use ('mysql' or 'mongo')", example = "mysql")
             @RequestParam(name = "dataSource", defaultValue = "mysql") String dataSource) {
-        List<Book> books = bookService.getAllBooks(dataSource);
-        return ApiResponse.success(books);
+
+        logger.info("Received getAllBooks request on thread: {}", Thread.currentThread().getName());
+
+        return bookService.getAllBooks(dataSource)
+                .thenApply(books -> {
+                    logger.info("Completing getAllBooks request on thread: {}", Thread.currentThread().getName());
+                    return ApiResponse.success(books);
+                });
     }
 
-    @Operation(summary = "Add a new book", description = "Creates a new book in the specified data source.")
+    @Operation(summary = "Add a new book asynchronously", description = "Asynchronously creates a new book.")
     @PostMapping
-    public ResponseEntity<ApiResponse<Book>> addBook(
+    public CompletableFuture<ResponseEntity<ApiResponse<Book>>> addBook(
             @RequestBody Book book,
             @Parameter(description = "The data source to use ('mysql' or 'mongo')", example = "mysql")
             @RequestParam(name = "dataSource", defaultValue = "mysql") String dataSource) {
-        Book savedBook = bookService.addBook(book, dataSource);
-        ApiResponse<Book> responseBody = ApiResponse.success(savedBook);
-        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
+
+        logger.info("Received addBook request on thread: {}", Thread.currentThread().getName());
+
+        return bookService.addBook(book, dataSource)
+                .thenApply(savedBook -> {
+                    logger.info("Completing addBook request on thread: {}", Thread.currentThread().getName());
+                    ApiResponse<Book> responseBody = ApiResponse.success(savedBook);
+                    return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
+                });
     }
 
-    @Operation(summary = "Delete a book by ID", description = "Deletes a book from the specified data source using its unique ID.")
+    @Operation(summary = "Delete a book by ID asynchronously", description = "Asynchronously deletes a book by its ID.")
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteBook(
+    public CompletableFuture<ResponseEntity<ApiResponse<Void>>> deleteBook(
             @Parameter(description = "The unique ID of the book to delete", required = true)
             @PathVariable("id") int bookId,
             @Parameter(description = "The data source to use ('mysql' or 'mongo')", example = "mysql")
             @RequestParam(name = "dataSource", defaultValue = "mysql") String dataSource) {
-        boolean deleted = bookService.deleteBookById(bookId, dataSource);
-        if (deleted) {
-            return ResponseEntity.ok(ApiResponse.success());
-        } else {
-            ApiResponse<Void> failureResponse = ApiResponse.failure(4040, "Book not found with id: " + bookId);
-            return new ResponseEntity<>(failureResponse, HttpStatus.NOT_FOUND);
-        }
+
+        logger.info("Received deleteBook request on thread: {}", Thread.currentThread().getName());
+
+        return bookService.deleteBookById(bookId, dataSource)
+                .thenApply(deleted -> {
+                    logger.info("Completing deleteBook request on thread: {}", Thread.currentThread().getName());
+                    if (deleted) {
+                        return ResponseEntity.ok(ApiResponse.success());
+                    } else {
+                        ApiResponse<Void> failureResponse = ApiResponse.failure(4040, "Book not found with id: " + bookId);
+                        return new ResponseEntity<>(failureResponse, HttpStatus.NOT_FOUND);
+                    }
+                });
     }
 }
