@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. 引入 Spring Boot Parent POM -->
+    <!-- 它会为我们管理所有依赖的版本，确保它们之间不会冲突 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version> <!-- 使用一个稳定且较新的 Spring Boot 版本 -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 项目坐标 (GAV) 保持不变 -->
+    <groupId>com.nantan</groupId>
+    <artifactId>backend</artifactId>
+    <version>3.0.0-SNAPSHOT</version> <!-- 版本号升级为 3.0.0 -->
+
+    <!-- 项目元数据保持不变 -->
+    <name>Library Management System (Spring Boot)</name>
+    <description>A simple command-line library management system powered by Spring Boot.</description>
+
+    <!-- 核心属性配置 -->
+    <properties>
+        <!-- Java 17 版本由 Spring Boot Parent 默认管理，但我们明确指定以保持清晰 -->
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 2. 添加 Spring Boot Data JPA Starter -->
+        <!-- 包含了 Spring Data JPA, Hibernate, 和一个 JDBC 连接池 (HikariCP) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- 3. 添加 Spring Boot Data MongoDB Starter -->
+        <!-- 包含了 Spring Data MongoDB 和 MongoDB Java Driver -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- 4. 保留 MySQL 数据库驱动 -->
+        <!-- Spring Boot 不会自动提供数据库驱动，需要我们自己添加 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 5. 添加 Spring Boot Test Starter (用于未来的测试) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 6. 添加 OpenAPI 3.0 插件 -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version> <!-- 使用一个较新的稳定版本 -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven 插件，用于打包和运行应用 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- maven-compiler-plugin 的配置现在由 parent POM 管理，无需额外配置 -->
+        </plugins>
+    </build>
+
+</project>

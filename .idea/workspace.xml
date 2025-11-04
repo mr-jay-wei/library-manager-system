@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d3e42c5e-2d88-4365-a0cf-596cdf0f0b20" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.properties.template">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/nantan/app/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/nantan/app/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/nantan/app/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/LibraryCommandLineRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/LibraryManagerSystemApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/jpa/BookJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nantan/app/mongo/BookMongoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties.template" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mr-jay-wei&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:mr-jay-wei/library-manager-system.git&quot;,
+    &quot;accountId&quot;: &quot;29a01804-b997-4412-9596-07ada8570353&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="34jLrZn3JXgUJNumT5DswutXl3V" />
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.app.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LibraryManagerSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ai/J_project/library-manager-system&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.log&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ai\J_project\library-manager-system\src\main\resources" />
+      <recent name="D:\ai\J_project\library-manager-system\src\main\resources\META-INF" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LibraryManagerSystemApplication">
+    <configuration name="app" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.nantan.app.app" />
+      <module name="library-manager-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nantan.app.jpa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryManagerSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="library-manager-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.nantan.app.LibraryManagerSystemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nantan.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.LibraryManagerSystemApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3e42c5e-2d88-4365-a0cf-596cdf0f0b20" name="Changes" comment="" />
+      <created>1761722234111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761722234111</updated>
+      <workItem from="1761722235300" duration="17345000" />
+      <workItem from="1761784279145" duration="9397000" />
+      <workItem from="1761794542000" duration="501000" />
+      <workItem from="1761795067534" duration="21202000" />
+      <workItem from="1761824983767" duration="1075000" />
+      <workItem from="1761826543799" duration="472000" />
+      <workItem from="1761827047669" duration="144000" />
+      <workItem from="1761869702339" duration="4436000" />
+      <workItem from="1761874542549" duration="2539000" />
+      <workItem from="1761877119537" duration="1143000" />
+      <workItem from="1761878284441" duration="13646000" />
+      <workItem from="1762137688310" duration="14729000" />
+      <workItem from="1762161200224" duration="19000" />
+      <workItem from="1762255927190" duration="455000" />
+      <workItem from="1762258366367" duration="788000" />
+    </task>
+    <task id="LOCAL-00001" summary="refactor(core):重构项目为Spring Boot应用并优化数据访问层- 将项目核心重构为Spring Boot应用程序，移除手动配置&#10;- 使用Spring Data JPA和MongoDB替代原生JPA和MongoDB驱动- 移除自定义的JpaManager和MongoManager连接管理器&#10;- 更新Book实体类以支持双数据库注解映射- 修改BookRepository接口以符合Spring Data规范&#10;- 添加LibraryCommandLineRunner实现命令行交互逻辑- 升级Maven依赖配置，引入Spring Boot starter包&#10;- 更新.gitignore文件，完善IDEA相关忽略规则&#10;- 调整application.properties配置模板结构和内容&#10;- 移除旧版app.java主类和persistence.xml配置文件">
+      <option name="closed" value="true" />
+      <created>1761880122692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761880122692</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactor(core):重构项目为Spring Boot应用并优化数据访问层- 将项目核心重构为Spring Boot应用程序，移除手动配置&#10;- 使用Spring Data JPA和MongoDB替代原生JPA和MongoDB驱动- 移除自定义的JpaManager和MongoManager连接管理器&#10;- 更新Book实体类以支持双数据库注解映射- 修改BookRepository接口以符合Spring Data规范&#10;- 添加LibraryCommandLineRunner实现命令行交互逻辑- 升级Maven依赖配置，引入Spring Boot starter包&#10;- 更新.gitignore文件，完善IDEA相关忽略规则&#10;- 调整application.properties配置模板结构和内容&#10;- 移除旧版app.java主类和persistence.xml配置文件">
+      <option name="closed" value="true" />
+      <created>1761880250066</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761880250066</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改配置">
+      <option name="closed" value="true" />
+      <created>1761880871302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761880871302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修改配置">
+      <option name="closed" value="true" />
+      <created>1761881012573</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761881012573</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(config): 添加MySQL和JPA配置支持&#10;&#10;- 新增MySQL数据库连接配置项&#10;- 配置JPA/Hibernate相关属性&#10;- 设置数据源驱动类名和连接参数&#10;- 启用SQL格式化输出功能- 设置Hibernate DDL自动管理策略&#10;- 更新MongoDB连接字符串并指定数据库名称">
+      <option name="closed" value="true" />
+      <created>1761881303192</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761881303192</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.properties.template">
+      <option name="closed" value="true" />
+      <created>1761881498094</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761881498094</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.template" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Stop tracking .idea folder" />
+    <MESSAGE value="Changes" />
+    <MESSAGE value="refactor(core):重构项目为Spring Boot应用并优化数据访问层- 将项目核心重构为Spring Boot应用程序，移除手动配置&#10;- 使用Spring Data JPA和MongoDB替代原生JPA和MongoDB驱动- 移除自定义的JpaManager和MongoManager连接管理器&#10;- 更新Book实体类以支持双数据库注解映射- 修改BookRepository接口以符合Spring Data规范&#10;- 添加LibraryCommandLineRunner实现命令行交互逻辑- 升级Maven依赖配置，引入Spring Boot starter包&#10;- 更新.gitignore文件，完善IDEA相关忽略规则&#10;- 调整application.properties配置模板结构和内容&#10;- 移除旧版app.java主类和persistence.xml配置文件" />
+    <MESSAGE value="修改配置" />
+    <MESSAGE value="feat(config): 添加MySQL和JPA配置支持&#10;&#10;- 新增MySQL数据库连接配置项&#10;- 配置JPA/Hibernate相关属性&#10;- 设置数据源驱动类名和连接参数&#10;- 启用SQL格式化输出功能- 设置Hibernate DDL自动管理策略&#10;- 更新MongoDB连接字符串并指定数据库名称" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.properties.template" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.properties.template" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

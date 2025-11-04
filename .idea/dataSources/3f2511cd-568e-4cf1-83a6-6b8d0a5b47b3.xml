@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="libraryDB@cluster0.k2i7wxu.mongodb.net">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.53">
+    <root id="1">
+      <ServerVersion>8.0.15</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="admin"/>
+    <schema id="3" parent="1" name="libraryDB">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2025-10-31.02:44:22</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="4" parent="1" name="local"/>
+    <schema id="5" parent="1" name="sample_mflix"/>
+    <table id="6" parent="3" name="books"/>
+    <column id="7" parent="6" name="_id">
+      <Position>1</Position>
+      <StoredType>ObjectId|12s</StoredType>
+    </column>
+    <column id="8" parent="6" name="_class">
+      <Position>2</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="9" parent="6" name="author">
+      <Position>3</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="10" parent="6" name="id">
+      <Position>4</Position>
+      <StoredType>Int32|4s</StoredType>
+    </column>
+    <column id="11" parent="6" name="title">
+      <Position>5</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <index id="12" parent="6" name="_id_">
+      <ColNames>_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+  </database-model>
+</dataSource>
