@@ -1,68 +1,73 @@
-# Library Management System (v3.0.0 - Web Service Edition)
+# Library Management System API (v3.0.0)
 
-这是一个基于 **Java 17** 和 **Spring Boot 3** 的现代化、前后端分离的图书管理系统。项目旨在演示和学习构建一个完整的全栈应用，其核心特性包括：
+这是一个基于 **Java 17** 和 **Spring Boot 3** 构建的、生产级的 RESTful API 服务。项目从一个简单的命令行工具演进而来，全面展示了现代企业级 Java 后端服务的核心架构与最佳实践。
 
-*   **前后端分离架构**: 项目被清晰地划分为 `backend` (后端服务) 和 `frontend` (前端应用) 两个独立模块。
-*   **RESTful API**: 后端提供了一套标准的、无状态的 RESTful API，用于对图书资源进行 CRUD (创建、读取、更新、删除) 操作。
-*   **多数据库支持**: 后端服务通过 API 参数动态支持两种完全不同的数据库：
-    1.  **MongoDB**: 通过 **Spring Data MongoDB** 实现。
-    2.  **MySQL**: 通过 **Spring Data JPA** 和 **Hibernate** 实现。
-*   **现代化后端技术栈**: 采用 Spring Boot 3，利用自动配置、依赖注入和分层架构（Controller-Service-Repository）构建了一个健壮、可扩展的后台服务。
-*   **简单的前端实现**: 提供了一个基于原生 HTML、CSS 和 JavaScript 的单页应用，通过 `fetch` API 与后端进行异步数据交互。
+## ✨ 核心特性
+
+*   **分层架构**: 清晰的 Controller, Service, Repository 三层架构，职责分明，易于维护。
+*   **双数据库支持**: 通过 Spring Data JPA (MySQL) 和 Spring Data MongoDB，在业务层实现了对关系型和 NoSQL 数据库的动态切换。
+*   **RESTful API**: 提供了一套设计良好、无状态的 RESTful API，用于对图书资源进行 CRUD 操作。
+*   **统一响应格式**: 所有 API 响应都被封装在标准的 `ApiResponse` 对象中，提供了统一的成功和失败数据结构。
+*   **全局异常处理**: 通过 `@RestControllerAdvice` 实现了全局异常捕获，确保了 API 的健壮性和友好的错误反馈。
+*   **环境分离配置**: 使用 Spring Profiles 将开发 (`dev`) 和生产 (`prod`) 环境的配置完全分离。
+*   **外部化敏感配置**: 数据库密码等敏感信息通过**环境变量**注入，遵循了安全开发规范，避免了机密泄露。
+*   **专业日志系统**: 集成 SLF4J + Logback，通过 `logback-spring.xml` 实现了结构化、分级别、环境感知的日志记录。
+*   **自动化 API 文档**: 集成 `springdoc-openapi`，自动生成交互式的 Swagger UI 文档，实现了“代码即文档”。
 
 ---
 
 ## 🚀 技术栈 (Tech Stack)
 
-### Backend
 *   **语言**: Java 17
 *   **核心框架**: Spring Boot 3.2.5
-*   **Web 框架**: Spring MVC
+*   **Web**: Spring MVC
 *   **数据访问**: Spring Data JPA, Spring Data MongoDB
-*   **数据库**: MongoDB, MySQL 8.0+
+*   **数据库驱动**: MySQL Connector/J, MongoDB Sync Driver
+*   **API 文档**: SpringDoc OpenAPI 3.0 (Swagger UI)
 *   **构建工具**: Apache Maven
-
-### Frontend
-*   **语言**: HTML, CSS, JavaScript (ES6+)
-*   **核心技术**: DOM API, Fetch API
-
----
-
-## 🏛️ 项目结构
-
-```
-library-manager-system/
-├── backend/         # Spring Boot 后端服务 (Maven Module)
-│   ├── src/
-│   └── pom.xml
-├── frontend/        # 静态前端应用 (Content Module)
-│   └── index.html
-└── README.md
-```
+*   **日志**: SLF4J, Logback
 
 ---
 
 ## 🛠️ 环境准备 (Prerequisites)
 
 1.  **JDK 17**: 必须安装 Java 17 或更高版本。
-2.  **Maven**: 必须安装 Maven 并配置好环境变量。
+2.  **Maven**: 必须安装 Maven 3.6+。
 3.  **数据库服务**:
-    *   拥有一个可访问的 **MongoDB** 实例，并获取其连接字符串。
-    *   拥有一个可访问的 **MySQL** 数据库实例，并记下其 URL、用户名和密码。
-4.  **现代浏览器**: 如 Chrome, Firefox, Edge。
-5.  **(可选) API 测试工具**: 如 Postman (需安装 Desktop Agent 以测试 localhost)。
+    *   一个可访问的 MongoDB 实例。
+    *   一个可访问的 MySQL 8.0+ 实例。
+4.  **开发工具**: 推荐使用 IntelliJ IDEA。
 
 ---
 
-## ⚙️ 配置 (Configuration)
+## ⚙️ 快速启动 (Quick Start)
 
-### Backend 配置
+### 1. 克隆项目
 
-1.  导航到 `backend/src/main/resources/` 目录。
-2.  **复制** `application.properties.template` 文件并**重命名**为 `application.properties`。
-3.  打开新的 `application.properties` 文件，根据注释提示，填写你自己的 MongoDB 和 MySQL 连接信息。
+```bash
+git clone <repository_url>
+cd library-manager-system/backend
+```
 
-### MySQL 手动建表
+### 2. 配置环境变量
+
+本项目将敏感配置（如数据库密码）外部化到了环境变量中。在运行应用之前，你必须在你的操作系统或 IDE 的运行配置中设置以下环境变量：
+
+*   `MONGO_DEV_PASSWORD`: 你的开发环境 MongoDB 数据库密码。
+*   `MYSQL_DEV_PASSWORD`: 你的开发环境 MySQL 数据库密码。
+
+### 3. 在 IntelliJ IDEA 中配置
+
+1.  打开 IntelliJ IDEA，选择 **File -> Open...**，然后选择项目根目录下的 `backend/pom.xml` 文件。
+2.  等待 Maven 下载所有依赖。
+
+### 4. 运行应用
+
+*   在项目视图中，找到 `LibraryManagerSystemApplication.java`。
+*   右键点击 `main` 方法并选择 **Run 'LibraryManagerSystemApplication.main()'**。
+*   应用将在 `dev` profile 下启动，并监听 `8080` 端口。
+
+### 5. 手动建表 (MySQL)
 
 在首次运行 MySQL 模式之前，**必须**手动连接到你的 MySQL 数据库，并执行以下 SQL 语句来创建 `books` 表：
 
@@ -76,51 +81,39 @@ CREATE TABLE books (
 
 ---
 
-## ▶️ 如何运行 (How to Run)
+## API 文档与测试
 
-你需要**同时运行后端服务和前端页面**。
+应用启动后，你可以通过以下方式访问和测试 API：
 
-### 1. 运行 Backend 服务
+### 访问交互式 API 文档 (Swagger UI)
 
-*   **使用 IntelliJ IDEA (推荐)**:
-    1.  打开 IntelliJ IDEA，选择 `File -> Open...`。
-    2.  导航到项目中的 `backend` 目录，选中 `pom.xml` 文件并打开。
-    3.  等待 Maven 依赖下载完成。
-    4.  导航到 `src/main/java/com/nantan/app/LibraryManagerSystemApplication.java`。
-    5.  右键点击 `main` 方法并选择 `Run`。
-    6.  看到控制台输出 `Tomcat started on port(s): 8080 (http)` 即表示后端服务启动成功。
+打开浏览器并访问：
+> **http://localhost:8080/swagger-ui.html**
 
-*   **使用命令行**:
-    ```bash
-    cd backend
-    ./mvnw spring-boot:run
-    ```
+你可以在这个页面上看到所有 API 的详细文档，并直接进行在线测试。
 
-### 2. 运行 Frontend 应用
+### 使用 API 测试工具 (如 Postman)
 
-1.  在你的文件资源管理器中，找到 `frontend/` 目录。
-2.  **直接用你的浏览器打开 `index.html` 文件**。
-
-现在，你可以在打开的浏览器页面中与应用进行交互了！
+*   **获取所有图书 (MySQL)**:
+    *   `GET http://localhost:8080/api/books?dataSource=mysql`
+*   **添加一本新书 (MongoDB)**:
+    *   `POST http://localhost:8080/api/books?dataSource=mongo`
+    *   **Headers**: `Content-Type: application/json`
+    *   **Body**: `{"id": 101, "title": "Spring in Action", "author": "Craig Walls"}`
+*   **删除一本书 (MySQL)**:
+    *   `DELETE http://localhost:8080/api/books/101?dataSource=mysql`
 
 ---
 
-## 📖 API 端点说明
+## 🏛️ 项目架构 (Architecture)
 
-所有 API 的基础路径为 `http://localhost:8080/api/books`。所有端点都接受一个查询参数 `dataSource` (`mysql` 或 `mongo`)，默认为 `mysql`。
-
-*   **获取所有图书**
-    *   **URL**: `/`
-    *   **方法**: `GET`
-    *   **示例**: `GET http://localhost:8080/api/books?dataSource=mongo`
-
-*   **添加一本新书**
-    *   **URL**: `/`
-    *   **方法**: `POST`
-    *   **请求体 (JSON)**: `{"id": 101, "title": "New Book", "author": "Some Author"}`
-    *   **示例**: `POST http://localhost:8080/api/books?dataSource=mysql`
-
-*   **删除一本书**
-    *   **URL**: `/{id}`
-    *   **方法**: `DELETE`
-    *   **示例**: `DELETE http://localhost:8080/api/books/101?dataSource=mysql`
+*   **`controller`**: 包含 `BookController`，负责处理 HTTP 请求，是 API 的入口。
+*   **`service`**: 包含 `BookService` 接口和 `BookServiceImpl` 实现，封装了核心业务逻辑。
+*   **`jpa` & `mongo`**: 分别包含 `BookJpaRepository` 和 `BookMongoRepository`，由 Spring Data 自动实现，负责与数据库交互。
+*   **`dto`**: 包含 `ApiResponse` 类，定义了 API 响应的统一数据结构。
+*   **`exception`**: 包含 `GlobalExceptionHandler`，用于全局捕获异常并返回标准化的错误响应。
+*   **`resources`**:
+    *   `application.properties`: 通用配置和默认 profile 设置。
+    *   `application-dev.properties`: 开发环境专用配置。
+    *   `application-prod.properties`: 生产环境专用配置。
+    *   `logback-spring.xml`: Logback 日志框架的详细配置。
